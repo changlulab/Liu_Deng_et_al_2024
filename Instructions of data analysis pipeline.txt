@@ -1,0 +1,6 @@
+The basic ChIP-seq pipeline is carried out in "ChIP-seq_script.sh". Individual peak files and normalized genome browser track files output are used for constructing the tomography.
+.bedGraph files (from 2 technical replicates) are used in pair by "Average_bw_mm10.sh" to produce one average .bw track for each sample slice.
+Peak files are processed by "Sort_EPIC2_by_score.sh" or "Sort_narrowPeak_by_score.sh" to filter for the top 30% peaks by confidence score. Resulting peak files are then fed to "Consensus_peak.R" in RStudio to obtain consensus peakset.
+"multiBigwigSummary.sh" is used to obtain matrix file from average .bw files and consensus peakset.
+The raw count .txt output is reformatted into .csv file and fed into RStudio by "Peaks_kmeans.R" for clustering, k value determination and plotting.
+Individual .bw files are too large to be provided as example data. Instead we provide an example matrix .csv file for the clustering and plotting steps. The output should match that of Figure 5 and 6 when k-value are set to the same k value.
